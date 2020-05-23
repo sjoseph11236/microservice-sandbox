@@ -1,9 +1,11 @@
 package com.jgs.userMicroService.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jgs.userMicroService.model.User;
@@ -38,5 +40,10 @@ public class MainController {
 	@GetMapping("/users")
 	public List<User> getUsers() {
 		return userServiceImpl.findAllUsers();
+	}
+	
+	@PostMapping("/users")
+	public void postUser(User user) {
+		userServiceImpl.createUser(user);
 	}
 }

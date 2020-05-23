@@ -6,6 +6,7 @@ import com.jgs.userMicroService.model.User;
 
 public interface UserServiceInt {
 	
-	User createUser();
+//	User createUser();
+	void createUser(User user);
 	List<User> findAllUsers();
 }

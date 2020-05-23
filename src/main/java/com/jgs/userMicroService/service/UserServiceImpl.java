@@ -18,13 +18,18 @@ public class UserServiceImpl implements UserServiceInt{
 		return userRepository.findAll();
 	} 
 	
+//	@Override
+//	public User createUser() {
+//		User userToBeSaved = new User("Sayeed", "sayeed@email.com", "admin");
+////		This will save it with an id to the database.
+////		saved in memory which h2 default place from storage.
+//		User savedUser = userRepository.save(userToBeSaved);
+//			
+//		return savedUser;
+//	}
+	
 	@Override
-	public User createUser() {
-		User userToBeSaved = new User("Sayeed", "sayeed@email.com", "admin");
-//		This will save it with an id to the database.
-//		saved in memory which h2 default place from storage.
-		User savedUser = userRepository.save(userToBeSaved);
-			
-		return savedUser;
+	public void createUser(User user) {
+		userRepository.save(user);
 	}
 }
