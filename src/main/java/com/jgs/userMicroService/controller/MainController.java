@@ -1,5 +1,8 @@
 package com.jgs.userMicroService.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,21 +13,30 @@ import com.jgs.userMicroService.service.UserServiceImpl;
 @RestController
 public class MainController {
 	
-	UserServiceImpl userServiceImp = new UserServiceImpl();
+//	High coupling
+//	UserServiceImpl userServiceImpl = new UserServiceImpl();
+	
+//	low coupling - spring is creating the new instance
+	@Autowired
+	UserServiceImpl userServiceImpl;
+	
 //	GET Request for path of root
 	@GetMapping("/")
-	public User index() {
-//		SHAPELESS DATA
-//		Map <String, String> user = new HashMap<>();
-//		user.put("name", "Sayeed");
-//		user.put("email", "sayeed@email.com");
-//		user.put("role", "admin");
-//		Business Logic
-		User user = userServiceImp.createUser();
-		
-				
-		
-		return user;
+	public String index() {
+////		SHAPELESS DATA
+////		Map <String, String> user = new HashMap<>();
+////		user.put("name", "Sayeed");
+////		user.put("email", "sayeed@email.com");
+////		user.put("role", "admin");
+////		Business Logic
+//		
+//		User user = userServiceImpl.createUser();
+	
+		return "Home Page";
 	}
 
+	@GetMapping("/users")
+	public List<User> getUsers() {
+		return userServiceImpl.findAllUsers();
+	}
 }
