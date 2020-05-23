@@ -2,6 +2,7 @@ package com.jgs.userMicroService.service;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,11 +48,13 @@ public class UserServiceImpl implements UserServiceInt{
 	public void updateUserById(Long id, User userChanges) {
 		User userFromDb = userRepository.findUserById(id);
 		
-		userFromDb.setName(userChanges.getName());
-		userFromDb.setEmail(userChanges.getEmail());
-		userFromDb.setRole(userChanges.getRole());
+//		Dynamic way of updating
+		BeanUtils.copyProperties(userChanges, userFromDb);
+//		userFromDb.setName(userChanges.getName());
+//		userFromDb.setEmail(userChanges.getEmail());
+//		userFromDb.setRole(userChanges.getRole());
 		
-		userRepositry.save(userFromDb);
+		userRepository.save(userFromDb);
 	}
 	
 }
