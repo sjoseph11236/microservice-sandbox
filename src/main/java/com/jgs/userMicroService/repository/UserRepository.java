@@ -5,9 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.jgs.userMicroService.model.User;
 
-//This The ORM that while interface with the database. methods that we will need to CRUD our database
+//This interacts with the ORM that while interface with the database. methods that we will need to CRUD our database
 // This turns our java in sql into code using methods inherited from Jpa interface. 
 @Repository
 public interface UserRepository extends JpaRepository <User, Long> {
-	
+	User findUserById(Long id);
 }

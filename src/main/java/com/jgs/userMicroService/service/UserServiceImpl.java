@@ -32,4 +32,26 @@ public class UserServiceImpl implements UserServiceInt{
 	public void createUser(User user) {
 		userRepository.save(user);
 	}
+	
+	@Override
+	public User findUserById(Long id) {
+		return userRepository.findUserById(id);
+	}
+
+	@Override
+	public void deleteUserById(Long id) {
+		userRepository.deleteById(id);
+	}
+	
+	@Override
+	public void updateUserById(Long id, User userChanges) {
+		User userFromDb = userRepository.findUserById(id);
+		
+		userFromDb.setName(userChanges.getName());
+		userFromDb.setEmail(userChanges.getEmail());
+		userFromDb.setRole(userChanges.getRole());
+		
+		userRepositry.save(userFromDb);
+	}
+	
 }

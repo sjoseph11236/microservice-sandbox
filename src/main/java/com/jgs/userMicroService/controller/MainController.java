@@ -1,11 +1,13 @@
 package com.jgs.userMicroService.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jgs.userMicroService.model.User;
@@ -41,9 +43,24 @@ public class MainController {
 	public List<User> getUsers() {
 		return userServiceImpl.findAllUsers();
 	}
+
+	@GetMapping("/users/{id}")
+	public User getUser(@PathVariable Long id) {
+		return userServiceImpl.findUserById(id);
+	}
 	
 	@PostMapping("/users")
 	public void postUser(User user) {
 		userServiceImpl.createUser(user);
+	}
+	
+	@PutMapping("/users/{id}")
+	public void putUser(@PathVariable Long id, User user) {
+		userServiceImpl.updateUserById(id, user);
+	}
+	
+	@DeleteMapping("/users/{id}")
+	public void deleteUser(@PathVariable Long id) {
+		userServiceImpl.deleteUserById(id);
 	}
 }
