@@ -50,6 +50,8 @@ public class UserServiceImpl implements UserServiceInt{
 		
 //		Dynamic way of updating
 		BeanUtils.copyProperties(userChanges, userFromDb);
+		
+//		Static way
 //		userFromDb.setName(userChanges.getName());
 //		userFromDb.setEmail(userChanges.getEmail());
 //		userFromDb.setRole(userChanges.getRole());
@@ -57,4 +59,7 @@ public class UserServiceImpl implements UserServiceInt{
 		userRepository.save(userFromDb);
 	}
 	
+	public int add(int num1 , int num2) {
+		return num1 + num2; 
+	}	
 }
